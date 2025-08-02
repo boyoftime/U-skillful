@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukonga Skillful - Teacher's Panel Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CSS Reset & Global Styles --- */
+        :root {
+            --primary-blue: #1a56db;      /* Vibrant blue */
+            --primary-green: #0e9f6e;     /* Complementary green */
+            --accent-yellow: #f59e0b;     /* Accent yellow */
+            --light-bg: #f9fafb;         /* Light background */
+            --card-bg: #ffffff;           /* Card background */
+            --dark-text: #1f2937;         /* Dark text */
+            --medium-text: #4b5563;       /* Medium text */
+            --light-text: #9ca3af;        /* Light text */
+            --footer-bg: #111827;         /* Dark footer background */
+            --border-color: #e5e7eb;      /* Border color */
+            --success: #10b981;           /* Success color */
+            --warning: #f59e0b;           /* Warning color */
+            --disabled: #9ca3af;          /* Disabled color */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e5e7eb 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .header-waves svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 45px;
+        }
+
+        .header-waves .shape-fill {
+            fill: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-header h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,90 0,100" fill="white"></path></svg>');
+            background-size: 100% 100%;
+            background-position: bottom;
+            z-index: -1;
+        }
+
+        .hero h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--medium-text);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        /* --- Panels Section --- */
+        .panels-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--medium-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .panels-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+        }
+
+        .panel-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            width: 350px;
+            padding: 40px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-blue);
+            transition: var(--transition);
+        }
+        
+        .panel-card:hover::before {
+            background: var(--primary-green);
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon-container {
+            width: 100px;
+            height: 100px;
+            background: rgba(26, 86, 219, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: var(--transition);
+        }
+
+        .panel-card:hover .card-icon-container {
+            background: rgba(14, 159, 110, 0.1);
+            transform: scale(1.05);
+        }
+
+        .panel-card .card-icon {
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .panel-card:hover .card-icon {
+            color: var(--primary-green);
+        }
+
+        .panel-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .panel-card p {
+            color: var(--medium-text);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 86, 219, 0.2);
+        }
+        
+        /* --- Disabled Card Styles --- */
+        .panel-card.disabled {
+            opacity: 0.85;
+            filter: grayscale(30%);
+        }
+
+        .panel-card.disabled:hover {
+            transform: none;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .panel-card.disabled .card-icon {
+            color: var(--disabled);
+        }
+
+        .panel-card.disabled .btn {
+            background: var(--disabled);
+            pointer-events: none;
+        }
+
+        .panel-card.disabled::before {
+            background: var(--disabled);
+        }
+
+        .panel-card.disabled:hover .card-icon-container {
+            background: rgba(156, 163, 175, 0.1);
+            transform: none;
+        }
+
+        .disabled-message {
+            font-style: italic;
+            color: var(--medium-text);
+            margin-top: 15px;
+            font-size: 0.95rem;
+            padding: 10px;
+            background: rgba(229, 231, 235, 0.5);
+            border-radius: 8px;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-disabled {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        /* --- Appreciation Section --- */
+        .appreciation-section {
+            background: var(--card-bg);
+            margin: 70px auto;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            max-width: 900px;
+            position: relative;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .appreciation-section::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: Georgia, serif;
+            font-size: 6rem;
+            color: var(--primary-green);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .appreciation-section h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .appreciation-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            position: relative;
+        }
+
+        .ceo-signature {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .ceo-signature img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid var(--primary-green);
+            object-fit: cover;
+        }
+
+        .ceo-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ceo-name {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .ceo-title {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        .footer-wave {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+            margin-top: 80px;
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: var(--footer-bg);
+        }
+
+        .site-footer {
+            background-color: var(--footer-bg);
+            color: #d1d5db;
+            padding: 80px 0 30px;
+            font-size: 0.95rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-about, .footer-contact {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .footer-about h5, .footer-contact h5 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-about h5::after, .footer-contact h5::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            color: var(--primary-green);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+            margin-top: 4px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .panels-container {
+                gap: 20px;
+            }
+            
+            .panel-card {
+                width: 100%;
+                max-width: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .appreciation-section {
+                padding: 30px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-about h5::after, .footer-contact h5::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .footer-contact li {
+                justify-content: center;
+            }
+            
+            .footer-contact i {
+                margin-right: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 20px 40px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .appreciation-section {
+                padding: 25px 20px;
+                margin: 50px auto;
+            }
+            
+            .appreciation-section h4 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-waves">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container header-content">
+            <h1>Ukonga Skillful</h1>
+            <p>Empowering Educators, Transforming Education</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Welcome Section -->
+        <section class="hero">
+            <div class="container">
+                <h2 class="animated">Teacher's Access Portal</h2>
+                <p class="animated delay-1">Welcome to your dedicated portal! Select your branch panel below to access resources, manage student data, and streamline your educational workflow.</p>
+                <div class="divider"></div>
+            </div>
+        </section>
+
+        <!-- Panels Section -->
+        <section class="panels-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Branch Access Panels</h2>
+                    <p>Choose your branch to access the dedicated teacher's portal</p>
+                </div>
+                
+                <div class="panels-container">
+                    <!-- Ukonga Panel (Active) -->
+                    <div class="panel-card animated">
+                        <span class="status-badge status-active">Active</span>
+                        <div>
+                            <div class="card-icon-container">
+                                <i class="fas fa-server card-icon"></i>
+                            </div>
+                            <h3>Ukonga Panel (Headquarters)</h3>
+                            <p>Access the main headquarters portal with complete administrative features and student management tools.</p>
+                        </div>
+                        <a href="https://ukongaskillful.pythonanywhere.com/" class="btn" target="_blank" rel="noopener noreferrer">Access Portal</a>
+                    </div>
+
+                    <!-- Tegeta Panel (Disabled) -->
+                    <div class="panel-card disabled animated delay-1">
+                        <span class="status-badge status-disabled">Coming Soon</span>
+                        <div>
+                            <div class="card-icon-container">
+                                <i class="fas fa-satellite-dish card-icon"></i>
+                            </div>
+                            <h3>Tegeta Panel</h3>
+                            <p>Branch portal for Tegeta campus. Currently in development phase.</p>
+                            <p class="disabled-message">Server is not yet available. Please check back later.</p>
+                        </div>
+                        <a href="#" class="btn">Get Access Now</a>
+                    </div>
+
+                    <!-- Mbezi Luis Panel (Disabled) -->
+                    <div class="panel-card disabled animated delay-2">
+                        <span class="status-badge status-disabled">Under Setup</span>
+                        <div>
+                            <div class="card-icon-container">
+                                <i class="fas fa-tools card-icon"></i>
+                            </div>
+                            <h3>Mbezi Luis Panel</h3>
+                            <p>Branch portal for Mbezi Luis campus. Currently being configured.</p>
+                            <p class="disabled-message">Server is under setup. Coming Soon!</p>
+                        </div>
+                        <a href="#" class="btn">Get Access Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Appreciation Section -->
+        <section class="appreciation-section animated">
+            <h4>A Message of Appreciation</h4>
+            <p>We extend our deepest gratitude to our visionary CEO, <strong>Dr. Tabaro</strong>, whose leadership and unwavering commitment to educational excellence inspire us all. Your dedication is the foundation of Ukonga Skillful's success and our mission to empower the next generation.</p>
+            
+            <div class="ceo-signature">
+                <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e9f6e'%3e%3cpath d='M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z'/%3e%3c/svg%3e" alt="CEO">
+                <div class="ceo-info">
+                    <span class="ceo-name">Dr. Tabaro</span>
+                    <span class="ceo-title">CEO & Founder, Ukonga Skillful</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Wave -->
+    <div class="footer-wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <h5>About Ukonga Skillful</h5>
+                <p>Ukonga Skillful is a premier private educational institution dedicated to providing high-quality, innovative education in Tanzania. We strive to foster skill, knowledge, and character in every student.</p>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h5>Contact Headquarters</h5>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Ukonga Magereza - Sabasaba Street, Dar es Salaam</li>
+                    <li><i class="fas fa-phone-alt"></i> CALL +255 711 471 303</li>
+                    <li><i class="fas fa-envelope"></i> info@ukongaskillful.ac.tz</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            © 2025 Ukonga Skillful. All Rights Reserved. | Empowering the Next Generation
+        </div>
+    </footer>
+
+</body>
+</html>
